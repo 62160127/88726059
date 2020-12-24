@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>randCount</title>
+    
+    </head>
+
+    <body>
+       <p> Random number program 0-99 (randCount.html) </p>
+
+        <input tuye="text" id="number">
+        <button onclick="random()">Random</button>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>number</th>
+                    <th>Random</th>
+                </tr>
+            </thead>
+
+        <tbody id="countnum">
+            </tbody>
+            </table>
+
+    <script>
+        function random(){
+            let num = document.querySelector('#number')
+            let countnum = document.querySelector('#countnum')
+
+            countnum.innerHTML = ''
+
+            let numbers = []
+            for (let i = 0; i < parseInt(num.value); i++) {
+                rn = Math.floor(Math.random() * 100)
+                numbers.push(rn)
+            }
+
+            numbers.sort((a, b) => a - b)
+
+            console.log(numbers)
+
+            let count = 1
+            let table = ``
+
+            for (let i = 1; i <= numbers.length; i++) {
+                if (numbers[i] == numbers[i - 1]) {
+                    count++
+                }
+                else {
+                    table += `<tr>
+                                <td>${numbers[i - 1]}</td>
+                                <td>${count}</td>
+                            </tr>`
+                    count = 1
+                }
+            }
+
+            countnum.innerHTML = table
+
+        }
+
+    </script>
+    </body>
+    </html>
