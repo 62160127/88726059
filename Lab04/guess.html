@@ -1,0 +1,55 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+    </head>
+
+<body>
+    <div class="container-fluid">
+        <h2>Guess Number</h2>
+
+<input tuye="text" placeholder="Number" id="number">
+
+<button onclick="guess()">Guess</button>
+<div id="hist"></div>
+<div  id="result"></div><br>
+<button onclick="over()">Restart</button>
+
+<script>
+    rn = Math.floor(Math.random()*100);
+    function guess() {
+        hist = document.getElementById('hist');
+        number = document.getElementById('number');
+        hist.innerHTML = hist.innerHTML+number.value +" "
+
+        result = document.getElementById('result');
+
+            if(number.value > rn){
+                result.innerHTML = "Too much"; 
+            }else if(number.value < rn){
+                result.innerHTML = "Too little"; 
+            }else {
+                result.innerHTML = "Correct"; 
+            } 
+    }
+
+    function over() {
+        hist = document.getElementById('hist');
+        number = document.getElementById('number');
+        result = document.getElementById('result');
+        hist.innerHTML = " "
+        result.innerHTML = " "
+        number.value = " "
+        rn = Math.floor(Math.random()*100);
+    }
+
+</script>
+</div>
+
+</body>
+</html>
+
+
