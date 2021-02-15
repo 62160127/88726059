@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Source+Sans+Pro:200,300,400,600');
+
+body {
+        background-color:#2F4F4F;
+}
+
+h1 {
+    color:#99a0a7;
+    font-family: 'Source Sans Pro', sans-serif ;
+    font-size: 75px;
+
+}
+
+h2 {
+    color:#99a0a7;
+    font-family: 'Source Sans Pro', sans-serif ;
+    font-size: 13px;
+
+}

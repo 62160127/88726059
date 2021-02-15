@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<center>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+</head>
+<body>
+    
+    <h1>SEARCH SONG</h1>
+    <input type="text" id="kw"> &nbsp; <button onclick="search()">Search</button><br><br>
+    
+    <form action="search_post2.php" method="post">
+        <br>
+    <button type="submit" class="button button3">Advance Search</button>
+    </form>
+
+    <div id="disp"></div>
+    
+    <script>
+        function nl2br(str,is_xhtml){
+            var breakTag = (is_xhtml || typeof is_xhtml == 'undefined') ? '<br />' : '<br>';
+            return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g,'$1' + breakTag + '$2');
+        }
+        function search() {
+            kw = document.getElementById('kw').value;
+            console.log("kw=" + kw);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // document.getElementById('disp').innerHTML = this.responseText;
+                    arr = JSON.parse(this.responseText);
+                    console.log(arr);
+                    if (arr.length == 0) {
+                        document.getElementById('disp').innerHTML = "Not found";
+                    } else {
+                        html = "";
+                        for (i = 0; i < arr.length; i++) {
+                            html += `
+                            <h2><div class="card">
+                                            <div class="card-body">
+                                            <h4 class="card-title">เพลง ${arr[i].NameSong}</h4>
+                                            <h4 class="card-title">อัลบั้ม ${arr[i].NameAlbum}</h4>
+                                            <h4 class="card-title">ศิลปิน ${arr[i].NameArtist}</h4>
+                                            <p class="card-text">${nl2br(arr[i].Lylics)}</p><br><br><br><br><br>
+                                            </div>
+                                            </div></h2>`;
+                        }
+                        document.getElementById('disp').innerHTML = html;
+                    }
+                }
+            }
+            xmlhttp.open("get", "search.php?kw=" + kw);
+            xmlhttp.send();
+        }
+    </script>
+
+
+</body>
+</center>
+</html>
+
+
+
+
+
+<!-- <form method="post" action="search.php">
+    <input type="text" name="kw" id="kw">
+    <input type="submit" value="Search">
+</form> -->
